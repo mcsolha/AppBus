@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="AppBus.Isaura_Unesp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppBus"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:DadosTituloConverter x:Key="DadosConverter"></local:DadosTituloConverter>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="12,10,12,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>            
+            <RelativePanel Grid.Column="0">
+                <TextBlock x:Name="IdaTitle" Text="Isaura P. Garmes" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
+                <Grid Grid.Column="0" RelativePanel.Below="IdaTitle">
+                    <ListBox x:Name="TitulosBox">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Converter={StaticResource DadosConverter}}"/>
+                                    <ListBox x:Name="HorariosBox">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </StackPanel>                                
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </RelativePanel>            
+            <TextBlock Grid.Column="1" Text="Unesp CTI" Style="{StaticResource HorariosTitulo}" />
+        </Grid>
+    </Grid>
+</Page>

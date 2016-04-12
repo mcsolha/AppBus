@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,9 +23,64 @@ namespace AppBus
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static MainPage Current;
+        private StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+        public List<Scenario> Scenarios
+        {
+            get { return this.scenarios; }
+        }
+
+        public StorageFolder LocalFolder
+        {
+            get
+            {
+                return localFolder;
+            }
+        }
+
         public MainPage()
         {
             this.InitializeComponent();
+            Current = this;
+            AppName.Text = FEATURE_NAME;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            // Populate the scenario list from the SampleConfiguration.cs file
+            ScenarioControl.ItemsSource = scenarios;
+            if (Window.Current.Bounds.Width < 640)
+            {
+                ScenarioControl.SelectedIndex = -1;
+            }
+            else
+            {
+                ScenarioControl.SelectedIndex = 0;
+            }
+        }
+        /// <summary>
+        /// Called whenever the user changes selection in the scenarios list.  This method will navigate to the respective
+        /// sample scenario page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScenarioControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox scenarioListBox = sender as ListBox;
+            Scenario s = scenarioListBox.SelectedItem as Scenario;
+            if (s != null)
+            {
+                ScenarioFrame.Navigate(s.ClassType);
+                if (Window.Current.Bounds.Width < 640)
+                {
+                    Splitter.IsPaneOpen = false;
+                }
+            }
+        }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            Splitter.IsPaneOpen = !Splitter.IsPaneOpen;
         }
     }
 }
