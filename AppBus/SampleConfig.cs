@@ -13,7 +13,7 @@ namespace AppBus
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title="Basic", ClassType=typeof(Isaura_Unesp)}
+            new Scenario() { Title="Isaura P. Garmes - Unesp CTI.", ClassType=typeof(Isaura_Unesp)}
         };
     }
     public class Scenario

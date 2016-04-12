@@ -46,6 +46,7 @@ namespace AppBus
         {
             IdaeVolta = await paginaIsauraUnesp.RetornarSiteCallback();            
             TitulosBox.ItemsSource = IdaeVolta[0];
+            TitulosBoxVolta.ItemsSource = IdaeVolta[1];
         }
 
         public void NotifyListBox(Dados dado)

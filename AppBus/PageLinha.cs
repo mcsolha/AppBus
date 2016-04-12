@@ -61,28 +61,59 @@ namespace AppBus
         /// </summary>        
         public async Task<List<Dados>[]> RetornarSiteCallback()
         {
+            bool _loaded = true;
             //faz conexão com o site
             Uri link = new Uri(this.link);
             StorageFile arquivoLocal =  await MainPage.Current.LocalFolder.CreateFileAsync("paginaisaura.html", CreationCollisionOption.OpenIfExists);
-            BackgroundDownloader x = new BackgroundDownloader();
-            DownloadOperation y = await x.CreateDownload(link, arquivoLocal).StartAsync();
-            using (Stream p = await y.ResultFile.OpenStreamForReadAsync())
+            HtmlDocument doc = new HtmlDocument();
+            using (Stream filetext = await arquivoLocal.OpenStreamForReadAsync())
             {
-                HtmlDocument doc = new HtmlDocument();
-                doc.Load(p);
-                //pega o elemento com class igual a div_ida e outro igual a div_volta
-                List<HtmlNode> divs = doc.DocumentNode.Descendants().Where(n => n.Name == "div").ToList();
-                List<HtmlNode> divsWithClass = divs.Where(n => n.Attributes.Where(t => t.Name == "class").Any() == true).ToList();
-                HtmlNode horariosIdaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_ida").ToList()[0];
-                HtmlNode horariosVoltaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_volta").ToList()[0];
-                //Separa os cabeçalhos e horarios em um vetor de string
-                string horariosIdaConc = horariosIdaNode.InnerText;
-                string[] horariosIda = horariosIdaConc.Split(' ', '\r', '\n');
-                string horariosVoltaConc = horariosVoltaNode.InnerText;
-                string[] horariosVolta = horariosVoltaConc.Split(' ', '\r', '\n');
-                horariosIda = horariosIda.Where(horario => horario != "").ToArray();
-                horariosVolta = horariosVolta.Where(horario => horario != "").ToArray();
-                return new List<Dados>[] { HorasTitulo(horariosIda), HorasTitulo(horariosVolta)};
+                if(filetext.Length == 0)
+                {
+                    _loaded = false;
+                }
+            }
+            if (_loaded)
+            {
+                using (Stream p = await arquivoLocal.OpenStreamForReadAsync())
+                {
+                    doc.Load(p);
+                    //pega o elemento com class igual a div_ida e outro igual a div_volta
+                    List<HtmlNode> divs = doc.DocumentNode.Descendants().Where(n => n.Name == "div").ToList();
+                    List<HtmlNode> divsWithClass = divs.Where(n => n.Attributes.Where(t => t.Name == "class").Any() == true).ToList();
+                    HtmlNode horariosIdaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_ida").ToList()[0];
+                    HtmlNode horariosVoltaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_volta").ToList()[0];
+                    //Separa os cabeçalhos e horarios em um vetor de string
+                    string horariosIdaConc = horariosIdaNode.InnerText;
+                    string[] horariosIda = horariosIdaConc.Split(' ', '\r', '\n');
+                    string horariosVoltaConc = horariosVoltaNode.InnerText;
+                    string[] horariosVolta = horariosVoltaConc.Split(' ', '\r', '\n');
+                    horariosIda = horariosIda.Where(horario => horario != "").ToArray();
+                    horariosVolta = horariosVolta.Where(horario => horario != "").ToArray();
+                    return new List<Dados>[] { HorasTitulo(horariosIda), HorasTitulo(horariosVolta) };
+                }
+            }
+            else
+            {
+                BackgroundDownloader x = new BackgroundDownloader();
+                DownloadOperation y = await x.CreateDownload(link, arquivoLocal).StartAsync();
+                using (Stream p = await y.ResultFile.OpenStreamForReadAsync())
+                {
+                    doc.Load(p);
+                    //pega o elemento com class igual a div_ida e outro igual a div_volta
+                    List<HtmlNode> divs = doc.DocumentNode.Descendants().Where(n => n.Name == "div").ToList();
+                    List<HtmlNode> divsWithClass = divs.Where(n => n.Attributes.Where(t => t.Name == "class").Any() == true).ToList();
+                    HtmlNode horariosIdaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_ida").ToList()[0];
+                    HtmlNode horariosVoltaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_volta").ToList()[0];
+                    //Separa os cabeçalhos e horarios em um vetor de string
+                    string horariosIdaConc = horariosIdaNode.InnerText;
+                    string[] horariosIda = horariosIdaConc.Split(' ', '\r', '\n');
+                    string horariosVoltaConc = horariosVoltaNode.InnerText;
+                    string[] horariosVolta = horariosVoltaConc.Split(' ', '\r', '\n');
+                    horariosIda = horariosIda.Where(horario => horario != "").ToArray();
+                    horariosVolta = horariosVolta.Where(horario => horario != "").ToArray();
+                    return new List<Dados>[] { HorasTitulo(horariosIda), HorasTitulo(horariosVolta) };
+                }
             }
         }
 

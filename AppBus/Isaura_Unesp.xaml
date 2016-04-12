@@ -7,7 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <local:DadosTituloConverter x:Key="DadosConverter"></local:DadosTituloConverter>
+        <local:DadosTituloConverter x:Key="DadosTituloConverter"></local:DadosTituloConverter>
+        <local:DadosDadosConverter x:Key="DadosDadosConverter"></local:DadosDadosConverter>
+        <local:DadosStringConverter x:Key="DadosStringConverter"></local:DadosStringConverter>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="12,10,12,12">
@@ -16,27 +18,61 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>            
             <RelativePanel Grid.Column="0">
-                <TextBlock x:Name="IdaTitle" Text="Isaura P. Garmes" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
-                <Grid Grid.Column="0" RelativePanel.Below="IdaTitle">
-                    <ListBox x:Name="TitulosBox">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Converter={StaticResource DadosConverter}}"/>
-                                    <ListBox x:Name="HorariosBox">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                </StackPanel>                                
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
+                <TextBlock x:Name="IdaTitle" Text="Isaura P. Garmes" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>                
+                <ListBox x:Name="TitulosBox" RelativePanel.Below="IdaTitle">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}"/>
+                                <!--list box com vetores de string para cada titulo-->
+                                <ListBox x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <ItemsWrapGrid>
+                                                <StackPanel Orientation="Horizontal">
+
+                                                </StackPanel>
+                                            </ItemsWrapGrid>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>                                                
+                                            <TextBlock Text="{Binding Converter={StaticResource DadosStringConverter}}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>                                
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>                
+            </RelativePanel>
+            <RelativePanel Grid.Column="1">
+                <TextBlock x:Name="VoltaTitle" Text="Unesp CTI" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
+                <ListBox x:Name="TitulosBoxVolta" RelativePanel.Below="VoltaTitle">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}"/>
+                                <!--list box com vetores de string para cada titulo-->
+                                <ListBox x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}">
+                                    <!--<ListBox.ItemsPanel>-->
+                                    <!--<ItemsPanelTemplate>-->
+                                    <!--<VariableSizedWrapGrid>-->
+
+                                    <!--</VariableSizedWrapGrid>-->
+                                    <!--</ItemsPanelTemplate>-->
+                                    <!--</ListBox.ItemsPanel>-->
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource DadosStringConverter}}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </RelativePanel>            
-            <TextBlock Grid.Column="1" Text="Unesp CTI" Style="{StaticResource HorariosTitulo}" />
         </Grid>
     </Grid>
 </Page>
