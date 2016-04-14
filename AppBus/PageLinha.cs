@@ -17,10 +17,6 @@ namespace AppBus
     /// </summary>
     public class PageLinha
     {
-        private StorageFile arquivoLocal;
-        private DadosViewModel vm;
-        private AsyncCallback callback;
-        private WebRequest webRequest;
         private string link;
         private List<Dados> titulosIda = new List<Dados>();
         private List<Dados> titulosVolta = new List<Dados>();
@@ -59,21 +55,13 @@ namespace AppBus
         /// <summary>
         /// Faz conexão com o site de maneira assíncrona
         /// </summary>        
-        public async Task<List<Dados>[]> RetornarSiteCallback()
+        public async Task<List<Dados>[]> RetornarSiteCallback(string titulo)
         {
-            bool _loaded = true;
             //faz conexão com o site
             Uri link = new Uri(this.link);
-            StorageFile arquivoLocal =  await MainPage.Current.LocalFolder.CreateFileAsync("paginaisaura.html", CreationCollisionOption.OpenIfExists);
+            StorageFile arquivoLocal =  await MainPage.Current.LocalFolder.CreateFileAsync(titulo+".html", CreationCollisionOption.OpenIfExists);
             HtmlDocument doc = new HtmlDocument();
-            using (Stream filetext = await arquivoLocal.OpenStreamForReadAsync())
-            {
-                if(filetext.Length == 0)
-                {
-                    _loaded = false;
-                }
-            }
-            if (_loaded)
+            if (!App.IsInternet())
             {
                 using (Stream p = await arquivoLocal.OpenStreamForReadAsync())
                 {

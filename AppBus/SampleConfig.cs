@@ -13,7 +13,9 @@ namespace AppBus
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title="Isaura P. Garmes - Unesp CTI.", ClassType=typeof(Isaura_Unesp)}
+            new Scenario() { Title="Isaura P. Garmes | Unesp CTI.", ClassType=typeof(Isaura_Unesp)},
+            new Scenario() { Title="Campus - CTI | Falcão ITE", ClassType=typeof(Campus_Falcao)},
+            new Scenario() { Title="Unesp CTI | Jardim Ouro Verde", ClassType=typeof(UnespOuroVerde)}
         };
     }
     public class Scenario

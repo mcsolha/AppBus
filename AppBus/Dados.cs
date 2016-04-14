@@ -19,10 +19,6 @@ namespace AppBus
         public string[] Horas { get { return horas; } }
         public Dados(string[] titulo, string[] horas)
         {
-            if(titulo[0] == "Dia")
-            {
-                titulo[1] = "Útil";
-            }
             for (int i = 0; i < titulo.Length; i++)
             {
                 if (i == titulo.Length - 1)

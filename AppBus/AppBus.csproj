@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Campus_Falcao.xaml.cs">
+      <DependentUpon>Campus_Falcao.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dados.cs" />
     <Compile Include="DadosTituloConverter.cs" />
     <Compile Include="Isaura_Unesp.xaml.cs">
@@ -107,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleConfig.cs" />
     <Compile Include="SConverter.cs" />
+    <Compile Include="UnespOuroVerde.xaml.cs">
+      <DependentUpon>UnespOuroVerde.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -129,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Campus_Falcao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Isaura_Unesp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="UnespOuroVerde.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

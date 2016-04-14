@@ -116,5 +116,7 @@
         <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="FontSize" Value="26.667"/>
     </Style>
-
+    <local:DadosTituloConverter x:Key="DadosTituloConverter"></local:DadosTituloConverter>
+    <local:DadosDadosConverter x:Key="DadosDadosConverter"></local:DadosDadosConverter>
+    <local:DadosStringConverter x:Key="DadosStringConverter"></local:DadosStringConverter>
 </ResourceDictionary>
