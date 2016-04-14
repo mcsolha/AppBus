@@ -20,9 +20,13 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}"/>
                                     <!--list box com vetores de string para cada titulo-->
-                                    <GridView x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}">
+                                    <GridView x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}" SelectionMode="None" MinWidth="200">
+                                        <GridView.Header>
+                                            <GridViewHeaderItem>
+                                                <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}" FontWeight="SemiLight" TextWrapping="Wrap"/>
+                                            </GridViewHeaderItem>
+                                        </GridView.Header>
                                         <GridView.ItemTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding Converter={StaticResource DadosStringConverter}}"/>
@@ -42,9 +46,13 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}"/>
                                     <!--list box com vetores de string para cada titulo-->
-                                    <GridView x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}" SelectionMode="None">
+                                    <GridView x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}" SelectionMode="None" MinWidth="200">
+                                        <GridView.Header>
+                                            <GridViewHeaderItem>
+                                                <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}" FontWeight="SemiLight" TextWrapping="Wrap"/>
+                                            </GridViewHeaderItem>
+                                        </GridView.Header>
                                         <GridView.ItemTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding Converter={StaticResource DadosStringConverter}}"/>
