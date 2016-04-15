@@ -15,7 +15,8 @@ namespace AppBus
         {
             new Scenario() { Title="Isaura P. Garmes | Unesp CTI.", ClassType=typeof(Isaura_Unesp)},
             new Scenario() { Title="Campus - CTI | Falcão ITE", ClassType=typeof(Campus_Falcao)},
-            new Scenario() { Title="Unesp CTI | Jardim Ouro Verde", ClassType=typeof(UnespOuroVerde)}
+            new Scenario() { Title="Unesp CTI | Jardim Ouro Verde", ClassType=typeof(UnespOuroVerde)},
+            new Scenario() { Title="Vila Dutra | Campus IPMET", ClassType=typeof(Dutra_Campus)}
         };
     }
     public class Scenario

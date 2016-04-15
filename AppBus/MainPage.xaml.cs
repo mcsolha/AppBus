@@ -22,7 +22,7 @@ namespace AppBus
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
-    {
+    {        
         public static MainPage Current;
         private StorageFolder localFolder = ApplicationData.Current.LocalFolder;
         public List<Scenario> Scenarios
@@ -43,20 +43,30 @@ namespace AppBus
             this.InitializeComponent();
             Current = this;
             AppName.Text = FEATURE_NAME;
+            SizeChanged += MainPage_SizeChanged;
+        }
+
+        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (Window.Current.Bounds.Width > 640)
+            {
+                ScenarioFrame.Visibility = Visibility.Visible;
+            }
+            else if (Window.Current.Bounds.Width <= 640)
+            {
+                if (Splitter.IsPaneOpen)                
+                    ScenarioFrame.Visibility = Visibility.Collapsed;
+                else
+                    ScenarioFrame.Visibility = Visibility.Visible;
+
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Populate the scenario list from the SampleConfiguration.cs file
             ScenarioControl.ItemsSource = scenarios;
-            if (Window.Current.Bounds.Width < 640)
-            {
-                ScenarioControl.SelectedIndex = -1;
-            }
-            else
-            {
-                ScenarioControl.SelectedIndex = 0;
-            }
+            ScenarioControl.SelectedIndex = 0;
         }
         /// <summary>
         /// Called whenever the user changes selection in the scenarios list.  This method will navigate to the respective
@@ -74,12 +84,21 @@ namespace AppBus
                 if (Window.Current.Bounds.Width < 640)
                 {
                     Splitter.IsPaneOpen = false;
+                    ScenarioFrame.Visibility = Visibility.Visible;
                 }
             }
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
+            if (Window.Current.Bounds.Width <= 640)
+            {
+                if (!Splitter.IsPaneOpen)
+                    ScenarioFrame.Visibility = Visibility.Collapsed;
+                else
+                    ScenarioFrame.Visibility = Visibility.Visible;
+
+            }
             Splitter.IsPaneOpen = !Splitter.IsPaneOpen;
         }
     }

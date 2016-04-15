@@ -10,11 +10,23 @@
         <local:SConverter x:Key="ScenarioConverter"></local:SConverter>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wid500">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="500"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ScenarioFrame.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <SplitView x:Name="Splitter" IsPaneOpen="True" Grid.Column="1" DisplayMode="Inline" Grid.Row="1">
+        <SplitView x:Name="Splitter" IsPaneOpen="False" Grid.Column="1" DisplayMode="Inline" Grid.Row="1">
             <SplitView.Pane>
                 <RelativePanel Margin="10,0,0,0">
                     <TextBlock x:Name="AppName" Text="App Name" Style="{StaticResource NameInSplit}" TextWrapping="Wrap" Margin="0,10,0,0"/>
@@ -30,7 +42,7 @@
                 </RelativePanel>
             </SplitView.Pane>
             <RelativePanel>
-                <Frame x:Name="ScenarioFrame" Margin="0,5,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
+                <Frame x:Name="ScenarioFrame" Visibility="Visible" Margin="0,5,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
             </RelativePanel>
         </SplitView>
         <StackPanel Grid.Row="0" Orientation="Horizontal">

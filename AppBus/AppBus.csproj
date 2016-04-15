@@ -100,12 +100,18 @@
     </Compile>
     <Compile Include="Dados.cs" />
     <Compile Include="DadosTituloConverter.cs" />
+    <Compile Include="Dutra_Campus.xaml.cs">
+      <DependentUpon>Dutra_Campus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Isaura_Unesp.xaml.cs">
       <DependentUpon>Isaura_Unesp.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageLinha.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pousada_Campus.xaml.cs">
+      <DependentUpon>Pousada_Campus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleConfig.cs" />
@@ -139,6 +145,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dutra_Campus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Isaura_Unesp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +156,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pousada_Campus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionaries\Styles.xaml">
       <SubType>Designer</SubType>
