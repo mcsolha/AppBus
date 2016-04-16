@@ -7,10 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="12,10,12,12">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <RelativePanel x:Name="relativePanel" Grid.Column="0" Margin="0,0,10,0">
@@ -40,7 +41,7 @@
                 </ScrollViewer>
             </RelativePanel>
             <RelativePanel Grid.Column="1" Margin="10,0,0,0">
-                <TextBlock x:Name="VoltaTitle" Text="Campus IPMET" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
+                <TextBlock x:Name="VoltaTitle" Text="Campus IPMET" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" TextWrapping="WrapWholeWords"/>
                 <ScrollViewer RelativePanel.Below="VoltaTitle">
                     <ItemsControl x:Name="TitulosBoxVolta" RelativePanel.Below="VoltaTitle">
                         <ItemsControl.ItemTemplate>

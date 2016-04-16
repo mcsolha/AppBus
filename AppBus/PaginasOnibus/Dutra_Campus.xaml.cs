@@ -40,7 +40,7 @@ namespace AppBus
 
         private async void DefineIda()
         {
-            IdaeVolta = await paginaDutraCampus.RetornarSiteCallback("isauraunesp");
+            IdaeVolta = await paginaDutraCampus.RetornarSiteCallback("dutracampus");
             TitulosBox.ItemsSource = IdaeVolta[0];
             TitulosBoxVolta.ItemsSource = IdaeVolta[1];
         }

@@ -22,9 +22,30 @@ namespace AppBus
     /// </summary>
     public sealed partial class Pousada_Campus : Page
     {
+        public static Pousada_Campus Current;
+        private static string htmlPousadaCampus = "http://transurbbauru.com.br/do/Linha/88/pousada_da_esperanca_campus__via_geisel";
+        PageLinha paginaPousadaCampus;
+        List<Dados>[] IdaeVolta;
+        DadosViewModel ViewModel { get; set; }
         public Pousada_Campus()
         {
             this.InitializeComponent();
+            Current = this;
+            this.ViewModel = new DadosViewModel();
+            paginaPousadaCampus = new PageLinha(htmlPousadaCampus);
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            DefineIda();
+        }
+
+        private async void DefineIda()
+        {
+            IdaeVolta = await paginaPousadaCampus.RetornarSiteCallback("pousadacampus");
+            TitulosBox.ItemsSource = IdaeVolta[0];
+            TitulosBoxVolta.ItemsSource = IdaeVolta[1];
+        }
+
     }
 }

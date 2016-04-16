@@ -1,22 +1,21 @@
 ﻿<Page
-    x:Class="AppBus.UnespOuroVerde"
+    x:Class="AppBus.Campus_Falcao"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AppBus"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
+    mc:Ignorable="d">    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="12,10,12,12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <RelativePanel x:Name="relativePanel" Grid.Column="0">
-                <TextBlock x:Name="IdaTitle" Text="Unesp CTI." Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
+            <RelativePanel x:Name="relativePanel" Grid.Column="0" Margin="0,0,10,0">
+                <TextBlock x:Name="IdaTitle" Text="Campus - CTI" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
                 <ScrollViewer RelativePanel.Below="IdaTitle">
-                    <ItemsControl x:Name="TitulosBox" RelativePanel.Below="IdaTitle">
+                    <ItemsControl x:Name="TitulosBox">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
@@ -39,8 +38,8 @@
                     </ItemsControl>
                 </ScrollViewer>
             </RelativePanel>
-            <RelativePanel Grid.Column="1">
-                <TextBlock x:Name="VoltaTitle" Text="Jardim Ouro Verde" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
+            <RelativePanel Grid.Column="1" Margin="10,0,0,0">
+                <TextBlock x:Name="VoltaTitle" Text="Falcão ITE" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" TextWrapping="WrapWholeWords"/>
                 <ScrollViewer RelativePanel.Below="VoltaTitle">
                     <ItemsControl x:Name="TitulosBoxVolta" RelativePanel.Below="VoltaTitle">
                         <ItemsControl.ItemTemplate>
