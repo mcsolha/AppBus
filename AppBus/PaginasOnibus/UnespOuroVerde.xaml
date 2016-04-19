@@ -15,22 +15,27 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <RelativePanel x:Name="relativePanel" Grid.Column="0" Margin="0,0,10,0">
-                <TextBlock x:Name="IdaTitle" Text="Unesp CTI." Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
+                <TextBlock x:Name="IdaTitle" Text="Unesp CTI" Style="{StaticResource HorariosTitulo}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
                 <ScrollViewer RelativePanel.Below="IdaTitle">
                     <ItemsControl x:Name="TitulosBox">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <!--list box com vetores de string para cada titulo-->
-                                    <GridView x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}" SelectionMode="None" MinWidth="200">
+                                    <GridView x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}" SelectionMode="None" MinWidth="200" ItemContainerStyle="{StaticResource GridViewCleanItem}">
                                         <GridView.Header>
                                             <GridViewHeaderItem>
-                                                <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}" FontWeight="SemiLight" TextWrapping="Wrap"/>
+                                                <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}" Style="{StaticResource GridViewHeaderText}" TextWrapping="Wrap"/>
                                             </GridViewHeaderItem>
                                         </GridView.Header>
                                         <GridView.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Converter={StaticResource DadosStringConverter}}"/>
+                                                <Button Content="{Binding Converter={StaticResource DadosStringConverter}}" Style="{StaticResource AlarmButtonStyle}" >
+                                                    <Button.Flyout>
+                                                        <DatePickerFlyout>
+                                                        </DatePickerFlyout>
+                                                    </Button.Flyout>
+                                                </Button>
                                             </DataTemplate>
                                         </GridView.ItemTemplate>
                                     </GridView>
@@ -48,15 +53,20 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <!--list box com vetores de string para cada titulo-->
-                                    <GridView x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}" SelectionMode="None" MinWidth="200">
+                                    <GridView x:Name="HorariosBox" ItemsSource="{Binding Converter={StaticResource DadosDadosConverter}}" SelectionMode="None" MinWidth="200" ItemContainerStyle="{StaticResource GridViewCleanItem}">
                                         <GridView.Header>
                                             <GridViewHeaderItem>
-                                                <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}" FontWeight="SemiLight" TextWrapping="Wrap"/>
+                                                <TextBlock Text="{Binding Converter={StaticResource DadosTituloConverter}}" Style="{StaticResource GridViewHeaderText}" TextWrapping="Wrap"/>
                                             </GridViewHeaderItem>
                                         </GridView.Header>
                                         <GridView.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Converter={StaticResource DadosStringConverter}}"/>
+                                                <Button Content="{Binding Converter={StaticResource DadosStringConverter}}" Style="{StaticResource AlarmButtonStyle}" >
+                                                    <Button.Flyout>
+                                                        <DatePickerFlyout>
+                                                        </DatePickerFlyout>
+                                                    </Button.Flyout>
+                                                </Button>
                                             </DataTemplate>
                                         </GridView.ItemTemplate>
                                     </GridView>

@@ -7,7 +7,9 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.Networking.Connectivity;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,6 +33,18 @@ namespace AppBus
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+        }
+
+        private async void HideStatusBar()
+        {
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var statusBar = StatusBar.GetForCurrentView();
+                if (statusBar != null)
+                {
+                    await statusBar.HideAsync();
+                }
+            }
         }
 
         /// <summary>
@@ -77,6 +91,8 @@ namespace AppBus
             }
             // Ensure the current window is active
             Window.Current.Activate();
+            //Hides the status if it exists
+            HideStatusBar();
         }
 
         /// <summary>

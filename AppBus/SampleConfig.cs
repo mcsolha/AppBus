@@ -17,7 +17,7 @@ namespace AppBus
             new Scenario() { Title="Campus - CTI | Falcão ITE", ClassType=typeof(Campus_Falcao)},
             new Scenario() { Title="Unesp CTI | Jardim Ouro Verde", ClassType=typeof(UnespOuroVerde)},
             new Scenario() { Title="Vila Dutra | Campus IPMET", ClassType=typeof(Dutra_Campus)},
-            new Scenario() { Title="Pousada da Esperança | Campus / Via Geisel", ClassType=typeof(Pousada_Campus)},
+            new Scenario() { Title="Pousada da Esperança | Campus / Via Geisel", ClassType=typeof(Pousada_Campus)}
         };
     }
     public class Scenario

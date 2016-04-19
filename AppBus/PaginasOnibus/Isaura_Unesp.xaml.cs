@@ -32,6 +32,11 @@ namespace AppBus
         {
             this.InitializeComponent();
             Current = this;
+            if (MainPage.Current.IsPhone)
+            {
+                IdaTitle.Text = "Isaura";
+                VoltaTitle.Text = "Unesp";
+            }
             this.ViewModel = new DadosViewModel();
             paginaIsauraUnesp = new PageLinha(htmlIsauraUnesp);
             

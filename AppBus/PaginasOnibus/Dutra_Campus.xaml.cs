@@ -29,10 +29,16 @@ namespace AppBus
         public Dutra_Campus()
         {
             this.InitializeComponent();
+            if (MainPage.Current.IsPhone)
+            {
+                IdaTitle.Text = "Dutra";
+                VoltaTitle.Text = "IPMET";
+            }
             Current = this;
             this.ViewModel = new DadosViewModel();
             paginaDutraCampus = new PageLinha(htmlDutraCampus);
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             DefineIda();

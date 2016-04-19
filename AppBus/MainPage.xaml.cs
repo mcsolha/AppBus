@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -24,6 +25,7 @@ namespace AppBus
     public sealed partial class MainPage : Page
     {        
         public static MainPage Current;
+        private bool _isPhone = false;
         private StorageFolder localFolder = ApplicationData.Current.LocalFolder;
         public List<Scenario> Scenarios
         {
@@ -35,6 +37,18 @@ namespace AppBus
             get
             {
                 return localFolder;
+            }
+        }
+
+        public bool IsPhone
+        {
+            get
+            {
+                return _isPhone;
+            }
+            private set
+            {
+                _isPhone = value;
             }
         }
 
@@ -64,6 +78,8 @@ namespace AppBus
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                IsPhone = true;
             // Populate the scenario list from the SampleConfiguration.cs file
             ScenarioControl.ItemsSource = scenarios;
             ScenarioControl.SelectedIndex = 0;
