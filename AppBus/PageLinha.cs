@@ -58,6 +58,7 @@ namespace AppBus
         /// </summary>        
         public async Task<List<Dados>[]> RetornarSiteCallback(string titulo)
         {
+            Regex htmlRegex = new Regex("<[^>]*>");
             //faz conexão com o site
             Uri link = new Uri(this.link);
             StorageFile arquivoLocal =  await MainPage.Current.LocalFolder.CreateFileAsync(titulo+".html", CreationCollisionOption.OpenIfExists);
@@ -73,12 +74,22 @@ namespace AppBus
                     HtmlNode horariosIdaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_ida").ToList()[0];
                     HtmlNode horariosVoltaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_volta").ToList()[0];
                     //Separa os cabeçalhos e horarios em um vetor de string
-                    string horariosIdaConc = horariosIdaNode.InnerText;
-                    string[] horariosIda = horariosIdaConc.Split(' ', '\r', '\n');
-                    string horariosVoltaConc = horariosVoltaNode.InnerText;
-                    string[] horariosVolta = horariosVoltaConc.Split(' ', '\r', '\n');
-                    horariosIda = horariosIda.Where(horario => horario != "").ToArray();
-                    horariosVolta = horariosVolta.Where(horario => horario != "").ToArray();
+                    string horariosIdaConc = horariosIdaNode.InnerHtml;
+                    string[] horariosIda = htmlRegex.Split(horariosIdaConc);
+                    horariosIdaConc = "";
+                    foreach (string horIda in horariosIda)
+                    {
+                        horariosIdaConc += horIda + " ";
+                    }
+                    horariosIda = horariosIdaConc.Split('\r', '\n', ' ').Where(x => x != "").ToArray();
+                    string horariosVoltaConc = horariosVoltaNode.InnerHtml;
+                    string[] horariosVolta = htmlRegex.Split(horariosVoltaConc);
+                    horariosVoltaConc = "";
+                    foreach (string horVolta in horariosVolta)
+                    {
+                        horariosVoltaConc += horVolta + " ";
+                    }
+                    horariosVolta = horariosVoltaConc.Split('\r', '\n', ' ').Where(x => x != "").ToArray();
                     return new List<Dados>[] { HorasTitulo(horariosIda), HorasTitulo(horariosVolta) };
                 }
             }
@@ -95,12 +106,22 @@ namespace AppBus
                     HtmlNode horariosIdaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_ida").ToList()[0];
                     HtmlNode horariosVoltaNode = divsWithClass.Where(n => n.Attributes["class"].Value == "div_volta").ToList()[0];
                     //Separa os cabeçalhos e horarios em um vetor de string
-                    string horariosIdaConc = horariosIdaNode.InnerText;
-                    string[] horariosIda = horariosIdaConc.Split(' ', '\r', '\n');
-                    string horariosVoltaConc = horariosVoltaNode.InnerText;
-                    string[] horariosVolta = horariosVoltaConc.Split(' ', '\r', '\n');
-                    horariosIda = horariosIda.Where(horario => horario != "").ToArray();
-                    horariosVolta = horariosVolta.Where(horario => horario != "").ToArray();
+                    string horariosIdaConc = horariosIdaNode.InnerHtml;
+                    string[] horariosIda = htmlRegex.Split(horariosIdaConc);
+                    horariosIdaConc = "";
+                    foreach (string horIda in horariosIda)
+                    {
+                        horariosIdaConc += horIda + " ";
+                    }
+                    horariosIda = horariosIdaConc.Split('\r', '\n', ' ').Where(stri => stri != "").ToArray();
+                    string horariosVoltaConc = horariosVoltaNode.InnerHtml;
+                    string[] horariosVolta = htmlRegex.Split(horariosVoltaConc);
+                    horariosVoltaConc = "";
+                    foreach (string horVolta in horariosVolta)
+                    {
+                        horariosVoltaConc += horVolta + " ";
+                    }
+                    horariosVolta = horariosVoltaConc.Split('\r', '\n', ' ').Where(stri => stri != "").ToArray();
                     return new List<Dados>[] { HorasTitulo(horariosIda), HorasTitulo(horariosVolta) };
                 }
             }

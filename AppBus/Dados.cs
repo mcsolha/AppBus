@@ -24,7 +24,12 @@ namespace AppBus
                 if (i == titulo.Length - 1)
                     this.titulo += titulo[i];
                 else
-                    this.titulo += titulo[i] + ' ';
+                {
+                    if (titulo[i] != "Sábado" && titulo[i] != "Feriado" && titulo[i] != "útil")
+                        this.titulo += titulo[i] + ' ';
+                    else
+                        this.titulo += titulo[i] + ":\n";
+                }
             }
             this.horas = horas;
         }
